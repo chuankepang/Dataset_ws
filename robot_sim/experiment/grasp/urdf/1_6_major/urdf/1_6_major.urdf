@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="1_6_major">
+  <gazebo reference="base_link">
+     <material>Gazebo/Orange</material>
+     <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <gazebo reference="link1">
+     <material>Gazebo/Orange</material>
+     <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00270899714756055 -0.00795898236474125 0.227846096908265"
+        rpy="0 0 0" />
+      <mass
+        value="0.37486750758775" />
+      <inertia
+        ixx="0.000970268597556199"
+        ixy="-3.14798702432892E-13"
+        ixz="-1.09753262259671E-12"
+        iyy="0.00193404141025545"
+        iyz="1.43381582241121E-20"
+        izz="0.000982044655943562" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://1_6_major/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="Orange">
+        <color
+          rgba="0.945 0.792 0.09 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://1_6_major/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="-1.61860394878865E-10 0.00608490105206888 -5.55111512312578E-17"
+        rpy="0 0 0" />
+      <mass
+        value="15.4867507587751" />
+      <inertia
+        ixx="0.000970268597556199"
+        ixy="-3.14798702965608E-13"
+        ixz="-1.09753262288876E-12"
+        iyy="0.00193404141025545"
+        iyz="1.41646588557961E-20"
+        izz="0.000982044655943562" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://1_6_major/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="Orange">
+        <color
+          rgba="0.945 0.792 0.09 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://1_6_major/meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="fixed">
+    <origin
+      xyz="-0.00270899698570015 -0.227846096908265 -0.0140438834168101"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

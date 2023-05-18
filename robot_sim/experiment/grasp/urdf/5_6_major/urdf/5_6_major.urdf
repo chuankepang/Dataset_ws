@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="5_6_major">
+  <gazebo reference="base_link">
+     <material>Gazebo/White</material>
+     <turnGravityOff>false</turnGravityOff>
+  </gazebo>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0147102147893285 -2.38101251419666E-11 0.0103064405487826"
+        rpy="0 0 0" />
+      <mass
+        value="5.09669657316974" />
+      <inertia
+        ixx="0.071341152721207"
+        ixy="-3.03458023683326E-17"
+        ixz="-1.09049379071588E-12"
+        iyy="0.071341152721207"
+        iyz="-6.2959876250727E-13"
+        izz="0.142486090385206" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://5_6_major/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="White">
+        <color
+          rgba="0.4 0.4 0.4 1.0" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://5_6_major/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

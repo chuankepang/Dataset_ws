@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find ur10_ag95_moveit_config)/launch/ur10_ag95_moveit.launch"/>
+  <include file="$(find ur10_ag95_moveit_config)/launch/moveit_rviz.launch" />
+  <include file="$(find aruco_ros)/launch/single.launch" />
+  <!--<include file="$(find aruco_ros)/launch/marker_publisher.launch" />-->
+
+  <node name="table" pkg="gazebo_ros" type="spawn_model" args="-file $(find robot_sim)/grasp/urdf/table_marble/model.sdf -sdf -model table -x 0.0 -y 1.13 -z 0.0" />
+
+  
+  
+
+
+  <node pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_reconfigure" output="screen"/>
+
+</launch>
+
+

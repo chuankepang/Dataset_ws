@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="aruco_582_200">
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+  
+  <xacro:macro name="aruco_582_200">
+
+    <gazebo reference="aruco_link">
+      <material>aruco_image</material>
+    </gazebo>
+    
+<!--     <link name="world" />
+
+    <joint name="world_joint" type="fixed">
+      <parent link="world" />
+      <child link = "aruco_link" />
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint> -->
+
+    <link name="aruco_link">
+      <inertial>
+        <mass value="0.01"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.004800083" ixy="0" ixz="0" iyy="0.00480083" iyz="0" izz="0.0096"/>
+      </inertial>
+      <collision name="aruco_collision">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.24 0.24 0.001"/>
+        </geometry>
+      </collision>
+      <visual name="aruco_visual">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.24 0.24 0.001"/>
+        </geometry>
+        <material name="aruco_image">
+          <texture filename="package://robot_sim/hand_eye_calibration/urdf/aruco/materials/textures/582_600x600.png"/>
+        </material>
+      </visual>
+    </link>
+  </xacro:macro>
+</robot>

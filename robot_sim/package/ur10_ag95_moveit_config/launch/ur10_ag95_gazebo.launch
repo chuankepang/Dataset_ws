@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="limited" default="false" doc="If true, limits joint range [-PI, PI] on all joints." />
+  <arg name="paused" default="false" doc="Starts gazebo in paused mode" />
+  <arg name="gui" default="true" doc="Starts gazebo gui" />
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="$(find ur10_ag95_moveit_config)/world/grasp.world" />
+    <!-- <arg name="world_name" default="worlds/empty.world"/> -->
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  <arg name="controller" default="postion"/>
+  <!-- start ur controller position -->
+  <group if="$(eval controller == 'postion')">
+    <include file="$(find ur10_ag95_moveit_config)/launch/ur10_ag95_upload.launch">
+      <arg name="limited" value="$(arg limited)"/>
+      <arg name="transmission_hw_interface" value="hardware_interface/PositionJointInterface" />
+    </include>
+    <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model ur10_ag95 -z 0" respawn="false" output="screen"/>
+    <rosparam file="$(find ur_gazebo)/controller/arm_controller_ur10.yaml" command="load"/>
+    <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
+    <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="load joint_group_position_controller" />
+  </group>
+
+  <!-- start ur controller effort -->
+  <group if="$(eval controller == 'effort')">
+    <include file="$(find ur10_ag95_moveit_config)/launch/ur10_ag95_upload.launch">
+      <arg name="limited" value="$(arg limited)"/>
+      <arg name="transmission_hw_interface" value="hardware_interface/EffortJointInterface" />
+    </include>
+    <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model ur10_ag95 -z 0" respawn="false" output="screen"/>
+    <rosparam file="$(find ur10_ag95_moveit_config)/config/arm_controller_ur10_effort.yaml" command="load"/>
+    <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
+  </group>
+
+  <include file="$(find ur_gazebo)/launch/controller_utils.launch"/>
+
+  <!-- start gripper controller -->
+  <rosparam file="$(find ur10_ag95_moveit_config)/config/dh_gripper.yaml" command="load"/>
+  <node name="gripper_controller_spawner" pkg="controller_manager" type="spawner" args="gripper" />
+
+  <!-- realsense d435i-->
+  <param name="camera_robot_description" command="$(find xacro)/xacro --inorder '$(find robot_sim)/camera_calibration/urdf/d435i_gazebo.xacro'" />
+
+  <node name="spawn_gazebo_model_camera" pkg="gazebo_ros" type="spawn_model" args="-y 0.75 -z 2.0 -urdf -param camera_robot_description -model robot " respawn="false" output="screen" />
+
+</launch>

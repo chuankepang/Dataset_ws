@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: ur10_ag95_moveit_config
+    relative_path: urdf/ur10_ag95.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/ur10.srdf
+  CONFIG:
+    author_name: PangChk
+    author_email: chuankepang@gmail.com
+    generated_timestamp: 1650226130

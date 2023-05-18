@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="major_mirror1" pkg="gazebo_ros" type="spawn_model" args="-file $(find robot_sim)/grasp/urdf/5_6_major/urdf/5_6_major.urdf -sdf -model 5_6_major -x 0 -y 1.0 -z 1.3 -R 3.142 -P 0 -Y 1.047" />
+  <node name="aruco" pkg="gazebo_ros" type="spawn_model" args="-file $(find robot_sim)/hand_eye_calibration/urdf/model.sdf -sdf -model aruco -x 0 -y 0.7 -z 0.97" />
+  <node name="major_mirror2" pkg="gazebo_ros" type="spawn_model" args="-file $(find robot_sim)/grasp/urdf/1_6_major/urdf/1_6_major.urdf -sdf -model 1_6_major -x -0.4 -y 0.47 -z 1.05 -R 0 -P 0 -Y 3.14" />
+
+
+
+</launch>
+
+
