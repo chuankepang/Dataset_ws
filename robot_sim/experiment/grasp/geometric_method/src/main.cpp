@@ -15,6 +15,7 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
     cv::startWindowThread();
     image_transport::ImageTransport it(nh);
+    //rgb和深度信息回传
     image_transport::Subscriber rgb_sub = it.subscribe(rgb_topic, 1, rgb_Callback);
     image_transport::Subscriber depth_sub = it.subscribe(depth_topic, 1, depth_Callback);
 
